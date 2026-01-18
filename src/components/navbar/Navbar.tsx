@@ -76,23 +76,37 @@ export function Navbar() {
               </Button>
             </SheetTrigger>
 
-            {/* CHANGED: Added z-[100] to force it above the sticky header */}
-            <SheetContent side="right" className="z-[100]">
-              <SheetTitle className="sr-only">Mobile Menu</SheetTitle>
-              <SheetDescription className="sr-only">
-                Navigation menu for mobile views
-              </SheetDescription>
+            {/* Mobile Menu Content */}
+            <SheetContent
+              side="right"
+              className="z-[100] w-[300px] sm:w-[400px]"
+            >
+              {/* Header inside the mobile menu for better visuals */}
+              <div className="flex items-center gap-2 border-b pb-4 mb-4">
+                <div className="relative h-6 w-6">
+                  <Image
+                    src="/logo.png"
+                    alt="Podcast Logo"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+                <SheetTitle className="font-bold text-lg">
+                  PodcastName
+                </SheetTitle>
+              </div>
 
-              <div className="flex flex-col gap-4 mt-8">
+              <div className="flex flex-col space-y-1">
                 {routes.map((route) => (
                   <Link
                     key={route.href}
                     href={route.href}
                     onClick={() => setIsOpen(false)}
                     className={cn(
-                      "text-lg font-medium transition-colors hover:text-primary",
+                      "flex items-center w-full px-3 py-3 text-lg font-medium rounded-md transition-all",
+                      "hover:bg-muted hover:text-primary", // Hover effect
                       pathname === route.href
-                        ? "text-primary font-bold"
+                        ? "bg-primary/10 text-primary font-semibold" // Active state style
                         : "text-muted-foreground",
                     )}
                   >
